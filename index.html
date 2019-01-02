@@ -1,0 +1,80 @@
+<html>
+	<head>
+		<title>Calculator</title>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+
+  <body style="background: #D9D9D9">
+
+    <div class="container">
+      <div class="row">
+        <div class="col d-flex justify-content-center">
+          <br />
+
+          <div class="calculator">
+            <input id="display" type="text" class="form-control result" placeholder="0" disabled="disabled" />
+            
+            <div class="row">
+              <button onclick="calc('action', 'c')" type="button" class="btn btn-dark btn-lg clear font-weight-light">C</button>
+              <button onclick="calc('action', '/')" type="button" class="btn btn-dark btn-lg font-weight-light">/</button>
+              <button onclick="calc('action', '*')" type="button" class="btn btn-dark btn-lg font-weight-light">x</button>
+            </div>
+
+            <div class="row">
+              <button onclick="calc('number', 7)" type="button" class="btn btn-dark btn-lg font-weight-light">7</button>
+              <button onclick="calc('number', 8)" type="button" class="btn btn-dark btn-lg font-weight-light">8</button>
+              <button onclick="calc('number', 9)" type="button" class="btn btn-dark btn-lg font-weight-light">9</button>
+              <button onclick="calc('action', '-')" type="button" class="btn btn-dark btn-lg font-weight-light">-</button>
+            </div>
+            
+            <div class="row">
+              <button onclick="calc('number', 4)" type="button" class="btn btn-dark btn-lg font-weight-light">4</button>
+              <button onclick="calc('number', 5)" type="button" class="btn btn-dark btn-lg font-weight-light">5</button>
+              <button onclick="calc('number', 6)" type="button" class="btn btn-dark btn-lg font-weight-light">6</button>
+              <button onclick="calc('action', '+')" type="button" class="btn btn-dark btn-lg font-weight-light">+</button>
+            </div>
+
+            <div class="row">
+              <button onclick="calc('number', 1)" type="button" class="btn btn-dark btn-lg font-weight-light">1</button>
+              <button onclick="calc('number', 2)" type="button" class="btn btn-dark btn-lg font-weight-light">2</button>
+              <button onclick="calc('number', 3)" type="button" class="btn btn-dark btn-lg font-weight-light">3</button>
+              <button onclick="calc('action', '=')" type="button" class="btn btn-dark btn-lg enter">=</button>
+            </div>
+
+            <div class="row" style="margin-top: -60px">
+              <button onclick="calc('number', 0)" type="button" class="btn btn-dark zero btn-lg font-weight-light">0</button>
+              <button onclick="calc('action', '.')"type="button" class="btn btn-dark btn-lg font-weight-light">.</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div> 
+    <script>
+      function calc(type, value) {
+        if(type === 'action') {
+
+          if(value === 'c') {
+            document.getElementById('display').value = ''
+          }
+
+          if(value === '+' || value === '-' || value === '*' || value === '/' || value === '.') {
+            document.getElementById('display').value += value
+          }
+
+          if(value === '=') {
+            var processResult = eval(document.getElementById('display').value)//var armazena a expressão que consta na tela quando apertado botão =,  o eval então processa esse cálculo automaticamente 
+            document.getElementById('display').value = processResult //o resultado do cálculo é mostrado no display da calculadora
+          }
+
+        } else if(type === 'number') {
+          var input = document.getElementById('display').value //pega primeiro valor digitado e mantem na tela para quando o próximo valor for digitado, o primeiro valor não sumir. 
+          document.getElementById('display').value = input + value //pega o próximo valor digitado e concatena junto ao valor anteriormente digitado
+        }
+      }
+    </script>   
+  </body>	
+
+</html>
